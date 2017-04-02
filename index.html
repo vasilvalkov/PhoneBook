@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Phone book</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My awesome phone book</h1>
+        <section id="controls" class="container">
+            <div class="row">
+                <div id="navogator">
+                    <a id="btnAdd" class="btn">Add a contact</a>
+                    <a id="btnImport" class="btn">Import contacts</a>
+                </div>
+                <div id="importForm" class="container hidden">
+                    <form class="form-horizontal">
+                        <div class="form-group col-md-10">
+                            <textarea id="dataInputArea" class="form-control" name="dataInputArea" rows="10"></textarea>
+                            <div>
+                                <a id="btnImportContent" class="btn">import data</a>
+                                <a id="btnCloseImportForm" class="btn">close form</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="addContactFormContainer" class="container hidden">
+                    <form id="addContactForm" class="form-horizontal" role="form" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
+                        <div class="form-group row">
+                            <label for="inputTel" class="col-md-2 control-label">Phone number</label>
+                            <div class="col-md-6">
+                                <input id="inputTel" class="form-control" name="phone" placeholder="0XXXXXXXXX or +XXXXXXXXXXXX" type="tel" pattern="0\d+|+\d+"
+                                    required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-md-2 control-label">Name</label>
+                            <div class="col-md-6">
+                                <input id="inputName" class="form-control" name="name" placeholder="Full name" type="text" maxlength="30" required="required"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputCity" class="col-md-2 control-label">City</label>
+                            <div class="col-md-4">
+                                <input id="inputCity" class="form-control" name="city" placeholder="City" type="text" maxlength="30" required="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputSign" class="col-md-2 control-label">Sign</label>
+                            <div class="col-md-6">
+                                <select id="inputSign" class="form-control" name="sign">
+                                    <option></option>
+                                    <option>Овен</option>
+                                    <option>Телец</option>
+                                    <option>Близнаци</option>
+                                    <option>Рак</option>
+                                    <option>Лъв</option>
+                                    <option>Дева</option>
+                                    <option>Везни</option>
+                                    <option>Скорпион</option>
+                                    <option>Стрелец</option>
+                                    <option>Козирог</option>
+                                    <option>Водолей</option>
+                                    <option>Риби</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputGender" class="col-md-2 control-label">Gender</label>
+                            <div class="col-md-6">
+                                <select id="inputGender" class="form-control" name="gender" required="required">
+                                    <option></option>
+                                    <option>м</option>
+                                    <option>ж</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputNote" class="col-md-2 control-label">Notes</label>
+                            <div class="col-md-6">
+                                <textarea id="inputNote" class="form-control" name="note" type="text" rows="3" maxlength="500"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <a id="btnAddContact" class="btn">add contact</a>
+                                <a id="btnCloseAddForm" class="btn">close form</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <form id="dataOrganizationForm" class="form-inline container">
+                    <div class="row">
+                        <div class="form-group col-sm-2">
+                            <label for="sorter" class="control-label">Sort by: </label>
+                            <select id="sorter" class="form-control input-sm" name="sort" required="required">
+                                <option value=""></option>
+                                <option value="name">name</option>
+                                <option value="phone">phone</option>
+                                <option value="city">city</option>
+                                <option value="gender">gender</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label for="filterColumnSelector">Filter by: </label>
+                            <select id="filterColumnSelector" class="form-control input-sm" name="filter" required="required">
+                                <option value=""></option>
+                                <option value="city">city</option>
+                                <option value="gender">gender</option>
+                            </select>
+                        </div>
+                        <div id="filterOptionContainer" class="form-group col-sm-2 hidden">
+                            <input id="filterOptionSelector" list="filterOptions" class="form-control input-sm" name="sort" />
+                            <datalist id="filterOptions" data-template="filterOptionsTemplate"></datalist>
+                        </div>
+                        <div class="form-group">
+                            <a id="resetFilter" class="btn">Reset filters</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section id="dataView" class="container">
+            <div class="row">
+                <table class="contactsList table table-hover table-condensed">
+                    <thead>
+                        <th>Phone number</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Gender</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody data-template="tableDatarowTemplate">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- Handlebars templates -->
+        <script id="tableDatarowTemplate" type="text/x-handlebars">
+            {{#each contacts}}
+            <tr class="dataRow" data-row-index="{{@index}}">
+                <td class="contactData">{{phone}}</td>
+                <td class="contactData">{{name}}</td>
+                <td class="contactData">{{city}}</td>
+                <td class="contactData">{{gender}}</td>
+                <td class="actions">
+                    <a class="contactActionButton previewButton btn btn-xs">Preview</a>
+                    <a class="contactActionButton editButton btn btn-xs">Edit</a>
+                    <a class="contactActionButton deleteButton btn btn-xs">Delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </script>
+        <script id="contactPreviewTemplate" type="text/x-handlebars">
+            <td colspan=5>
+                <dl class="dl-horizontal">
+                        <dt>Phone</dt>
+                        <dd>{{phone}}</dd>
+                        <dt>Name</dt>
+                        <dd>{{name}}</dd>
+                        <dt>City</dt>
+                        <dd>{{city}}</dd>
+                        <dt>Gender</dt>
+                        <dd>{{gender}}</dd>
+                        <dt>Sign</dt>
+                        <dd>{{sign}}</dd>
+                        <dt>Note</dt>
+                        <dd>{{note}}</dd>
+                </dl>
+            </td>
+        </script>
+        <script id="filterOptionsTemplate" type="text/x-handlebars">
+            {{#each values}}
+            <option value="{{value}}">
+                {{/each}}
+        </script>
+        <!-- Application scripts -->
+        <script src="scripts/main.js"></script>
+        <script src="scripts/add.js"></script>
+        <script src="scripts/import.js"></script>
+        <script src="scripts/sort.js"></script>
+        <script src="scripts/filter.js"></script>
+        <script src="scripts/table-actions.js"></script>
+    </div>
+</body>
+
+</html>
