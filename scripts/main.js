@@ -17,6 +17,7 @@ function getContactsFromStorage() {
     if (existingContacts && existingContacts.contacts) {;
         return existingContacts;
     } else {
+        $('#btnAddSampleContacts').removeClass('hidden');
         return null;
     }
 }

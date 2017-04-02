@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Phone book</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Phone book</title>
 </head>
 
 <body>
@@ -22,6 +22,7 @@
                 <div id="navogator">
                     <a id="btnAdd" class="btn">Add a contact</a>
                     <a id="btnImport" class="btn">Import contacts</a>
+                    <a id="btnAddSampleContacts" class="btn hidden">Add sample contacts</a>
                 </div>
                 <div id="importForm" class="container hidden">
                     <form class="form-horizontal">
@@ -165,18 +166,18 @@
         <script id="contactPreviewTemplate" type="text/x-handlebars">
             <td colspan=5>
                 <dl class="dl-horizontal">
-                        <dt>Phone</dt>
-                        <dd>{{phone}}</dd>
-                        <dt>Name</dt>
-                        <dd>{{name}}</dd>
-                        <dt>City</dt>
-                        <dd>{{city}}</dd>
-                        <dt>Gender</dt>
-                        <dd>{{gender}}</dd>
-                        <dt>Sign</dt>
-                        <dd>{{sign}}</dd>
-                        <dt>Note</dt>
-                        <dd>{{note}}</dd>
+                    <dt>Phone</dt>
+                    <dd>{{phone}}</dd>
+                    <dt>Name</dt>
+                    <dd>{{name}}</dd>
+                    <dt>City</dt>
+                    <dd>{{city}}</dd>
+                    <dt>Gender</dt>
+                    <dd>{{gender}}</dd>
+                    <dt>Sign</dt>
+                    <dd>{{sign}}</dd>
+                    <dt>Note</dt>
+                    <dd>{{note}}</dd>
                 </dl>
             </td>
         </script>
@@ -192,6 +193,7 @@
         <script src="scripts/sort.js"></script>
         <script src="scripts/filter.js"></script>
         <script src="scripts/table-actions.js"></script>
+        <script src="scripts/sample-contacts.js"></script>
     </div>
 </body>
 
