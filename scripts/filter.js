@@ -35,39 +35,39 @@ $('#filterColumnSelector').on('change', function () {
         .html(hbOptionsTemplate(availableValues))
         .parents('#filterOptionContainer').removeClass('hidden');
 
-    $('#filterOptionSelector').on('input', autoComplete);
+    $('#filterOptionSelector').on('input', function () {
+        availableValues = {
+            values: getUniqueValues(contacts, prop)
+        };
+
+        $('#filterOptions')
+            .html(hbOptionsTemplate(availableValues));
+
+        var filteredContacts = contacts.filter(function (cont) {
+            if (cont[prop] === $('#filterOptionSelector').val()) {
+                return cont;
+            }
+        });
+
+        var foundContacts = {
+            contacts: []
+        };
+
+        if (filteredContacts.length) {
+            foundContacts.contacts = filteredContacts;
+        } else {
+            foundContacts.contacts = contacts;
+        }
+
+        listContacts(foundContacts);
+    });
 })
 
 // --------------------------------------
 // HELPERS
 // --------------------------------------
 
-function autoComplete() {
-    availableValues = {
-        values: getUniqueValues(contacts, prop)
-    };
 
-    $('#filterOptions')
-        .html(hbOptionsTemplate(availableValues));
-
-    var filteredContacts = contacts.filter(function (cont) {
-        if (cont[prop] === $('#filterOptionSelector').val()) {
-            return cont;
-        }
-    });
-
-    var foundContacts = {
-        contacts: []
-    };
-
-    if (filteredContacts.length) {
-        foundContacts.contacts = filteredContacts;
-    } else {
-        foundContacts.contacts = contacts;
-    }
-
-    listContacts(foundContacts);
-}
 
 function getUniqueValues(objects, objProp) {
     var uniques = {};

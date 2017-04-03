@@ -107,7 +107,7 @@ function validateInputs() {
     var phoneNumber = $inputTel.val();
 
     var hasCorrectStart = phoneNumber[0] === '0' || phoneNumber[0] === '+';
-    var hasCorrectDigitsCount = 5 < phoneNumber.length && phoneNumber.length < 12;
+    var hasCorrectDigitsCount = 5 <= phoneNumber.length && phoneNumber.length <= 12;
     var hasOnlyDigits = true;
 
     for (var i = 1, len = phoneNumber.length; i < len; i += 1) {
