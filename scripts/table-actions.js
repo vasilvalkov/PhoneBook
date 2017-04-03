@@ -23,7 +23,7 @@ $('tbody').on('click', '.contactActionButton', function action(ev) {
     } else if ($this.hasClass('foldPreviewButton')) {
         $this.removeClass('foldPreviewButton')
             .addClass('previewButton')
-            .html('preview');
+            .html('Preview');
 
         $contactRow.next().remove();
     }
@@ -52,14 +52,25 @@ $('tbody').on('click', '.contactActionButton', function action(ev) {
 
         $('#btnAddContact')
             .html('edit contact')
-            .one('click', function () {
-                var editedContactObj = $('#addContactForm').serializeArray()
-                    .reduce(function (a, x) {
-                        a[x.name] = x.value;
-                        return a;
-                    }, {});
+            .on('click', function () {
+                var storedContacts = getContactsFromStorage();
+                var cachedContacts = storedContacts.contacts.slice();
 
-                editContact(contactIndex, editedContactObj);
+                var contactToEdit = storedContacts.contacts.splice(contactIndex, 1);
+                saveContactsToStorage(storedContacts.contacts);
+
+                var areCorrectInputs = validateInputs();
+                saveContactsToStorage(cachedContacts);
+
+                if (areCorrectInputs) {
+                    var editedContactObj = $('#addContactForm').serializeArray()
+                        .reduce(function (a, x) {
+                            a[x.name] = x.value.trim();
+                            return a;
+                        }, {});
+
+                    editContact(contactIndex, editedContactObj);
+                }
             });
     }
 });
@@ -94,8 +105,8 @@ function editContact(contactIndex, editedContact) {
 
     $('#btnAddContact')
         .html('add contact')
-        .one('click', addContactCallback);
-    
+        .one('click', validateInputs);
+
     $addForm.addClass('hidden');
 
     var savedContacts = getContactsFromStorage();

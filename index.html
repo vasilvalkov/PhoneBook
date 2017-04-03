@@ -27,7 +27,7 @@
                 <div id="importForm" class="container hidden">
                     <form class="form-horizontal">
                         <div class="form-group col-md-10">
-                            <textarea id="dataInputArea" class="form-control" name="dataInputArea" rows="10"></textarea>
+                            <textarea id="dataInputArea" class="form-control" name="dataInputArea" rows="10" placeholder="Put here tab-deliminated data in the following order: phone, name, city, gender, sign, note."></textarea>
                             <div>
                                 <a id="btnImportContent" class="btn">import data</a>
                                 <a id="btnCloseImportForm" class="btn">close form</a>
@@ -40,7 +40,7 @@
                         <div class="form-group row">
                             <label for="inputTel" class="col-md-2 control-label">Phone number</label>
                             <div class="col-md-6">
-                                <input id="inputTel" class="form-control" name="phone" placeholder="0XXXXXXXXX or +XXXXXXXXXXXX" type="tel" pattern="0\d+|+\d+"
+                                <input id="inputTel" class="form-control" name="phone" placeholder="0XXXXXXXXX or +XXXXXXXXXXXX" type="tel" 
                                     required="required" />
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                         <div class="form-group row">
                             <label for="inputCity" class="col-md-2 control-label">City</label>
                             <div class="col-md-4">
-                                <input id="inputCity" class="form-control" name="city" placeholder="City" type="text" maxlength="30" required="" />
+                                <input id="inputCity" class="form-control" name="city" placeholder="City" type="text" maxlength="30" required="" autocomplete="on" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -62,18 +62,18 @@
                             <div class="col-md-6">
                                 <select id="inputSign" class="form-control" name="sign">
                                     <option></option>
-                                    <option>Овен</option>
-                                    <option>Телец</option>
-                                    <option>Близнаци</option>
-                                    <option>Рак</option>
-                                    <option>Лъв</option>
-                                    <option>Дева</option>
-                                    <option>Везни</option>
-                                    <option>Скорпион</option>
-                                    <option>Стрелец</option>
-                                    <option>Козирог</option>
-                                    <option>Водолей</option>
-                                    <option>Риби</option>
+                                    <option>Aries</option>
+                                    <option>Taurus</option>
+                                    <option>Gemini</option>
+                                    <option>Cancer</option>
+                                    <option>Leo</option>
+                                    <option>Virgo</option>
+                                    <option>Libra</option>
+                                    <option>Scorpio</option>
+                                    <option>Sagittarius</option>
+                                    <option>Capricorn</option>
+                                    <option>Aquarius</option>
+                                    <option>Pisces</option>
                                 </select>
                             </div>
                         </div>
@@ -82,8 +82,8 @@
                             <div class="col-md-6">
                                 <select id="inputGender" class="form-control" name="gender" required="required">
                                     <option></option>
-                                    <option>м</option>
-                                    <option>ж</option>
+                                    <option>male</option>
+                                    <option>female</option>
                                 </select>
                             </div>
                         </div>
@@ -188,10 +188,10 @@
         </script>
         <!-- Application scripts -->
         <script src="scripts/main.js"></script>
-        <script src="scripts/add.js"></script>
         <script src="scripts/import.js"></script>
         <script src="scripts/sort.js"></script>
         <script src="scripts/filter.js"></script>
+        <script src="scripts/add.js"></script>
         <script src="scripts/table-actions.js"></script>
         <script src="scripts/sample-contacts.js"></script>
     </div>
