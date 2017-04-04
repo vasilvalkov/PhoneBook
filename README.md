@@ -1,6 +1,6 @@
-﻿### Description
+﻿# Description
 
-Application for storing an d managing contacts.
+Application for storing and managing contacts.
 
 ## Contacts list
 
@@ -11,10 +11,10 @@ This area should contain the following:
 	- Name
 	- City
 	- Gender
-	- Links/Buttons for:
-		+ Preview
-		+ Edit
-		+ Delete
+	- Links/Buttons for every contact:
+		* Preview
+		* Edit
+		* Delete
 + Button for adding a new contact
 + Button for importing contacts
 
@@ -51,7 +51,7 @@ The data must be formatted this way:
 	- sign
 	- note
 
-## Other
+## Other intructions
 
 For simplicity, no database server should be used to store the contacts. The browser's localStorage can be used instead.
 
